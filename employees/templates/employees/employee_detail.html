@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ employee.first_name }} {{ employee.last_name }}</h1>
+<p>{{ employee.position }}</p>
+<img src="{{ employee.photo.url }}" alt="{{ employee.first_name }}">
+<a href="{% url 'employee_update' employee.pk %}" class="btn btn-primary">Edit</a>
+<form action="{% url 'employee_delete' employee.pk %}" method="post" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Delete</button>
+</form>
+<a href="{% url 'employee_list' %}" class="btn btn-secondary">Back to List</a>
+{% endblock %}
